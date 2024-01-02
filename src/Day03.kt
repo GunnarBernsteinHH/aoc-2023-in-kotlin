@@ -10,7 +10,7 @@ fun main() {
     data class NumberData(
         val value: Int,
         val start: Int,
-        val end: Int,
+        val endExclusive: Int,
         var isAdjacent: Boolean = false
     )
 
@@ -59,7 +59,7 @@ fun main() {
 
         fun checkNumberIsAdjacentSymbol(numbers: List<NumberData>, posSymbol: Int) {
             numbers.forEach { number ->
-                if (number.start <= posSymbol + 1 && number.end >= posSymbol)
+                if (number.start <= posSymbol + 1 && number.endExclusive >= posSymbol)
                     number.isAdjacent = true
             }
         }
@@ -96,7 +96,7 @@ fun main() {
 
         fun checkNumberIsPotentialGear(numbers: List<NumberData>, posSymbol: Int, lineNo: Int) {
             numbers.forEach { number ->
-                if (number.start <= posSymbol + 1 && number.end >= posSymbol) {
+                if (number.start <= posSymbol + 1 && number.endExclusive >= posSymbol) {
                     // is potential gear
                     val g = gears.filter { it.lineNo == lineNo && it.posSymbol == posSymbol }
                     if (g.isEmpty()) {
